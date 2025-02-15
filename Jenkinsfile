@@ -6,10 +6,10 @@ pipeline {
             steps {
                 // Clone mã nguồn trực tiếp nếu chưa có hoặc pull nếu đã tồn tại
                 sh '''
-                if [ ! -d "/home/$USER/rum_site_check" ]; then
-                    git clone git@github.com:khoidang2110/rum_site_check.git rum_site_check 
+                if [ ! -d "/home/$USER/hello_jenkins" ]; then
+                    git clone https://github.com/khoidang2110/hello_jenkins.git /home/$USER/hello_jenkins
                 else
-                    cd /home/$USER/rum_site_check
+                    cd /home/$USER/hello_jenkins
                     git pull
                 fi
                 '''
@@ -19,8 +19,8 @@ pipeline {
         stage('Stop and Remove Old Container') {
             steps {
                 sh '''
-                docker stop rum_site_check || true
-                docker rm rum_site_check || true
+                docker stop hello_jenkins || true
+                docker rm hello_jenkins || true
                 '''
             }
         }
@@ -28,8 +28,8 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 sh '''
-                cd /home/$USER/rum_site_check
-                docker build -t rum_site_check .
+                cd /home/$USER/hello_jenkins
+                docker build -t hello_jenkins .
                 '''
             }
         }
@@ -37,7 +37,7 @@ pipeline {
         stage('Run New Container') {
             steps {
                 sh '''
-                docker run --restart=always -d --name rum_site_check --memory="300m" --cpus="1.0" rum_site_check
+                docker run --restart=always -d --name hello_jenkins --memory="300m" --cpus="1.0" hello_jenkins
                 '''
             }
         }
