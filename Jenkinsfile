@@ -1,10 +1,8 @@
 pipeline {
     agent any
-
     stages {
         stage('Clone Repository') {
             steps {
-                // Clone mã nguồn trực tiếp nếu chưa có hoặc pull nếu đã tồn tại
                 sh '''
                 if [ ! -d "/home/root/hello_jenkins" ]; then
                     git clone https://github.com/khoidang2110/hello_jenkins.git /home/root/hello_jenkins
@@ -28,7 +26,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 sh '''
-                cd /home/$USER/hello_jenkins
+                cd /home/root/hello_jenkins
                 docker build -t hello_jenkins .
                 '''
             }
