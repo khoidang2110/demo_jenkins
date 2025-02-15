@@ -6,10 +6,10 @@ pipeline {
             steps {
                 // Clone mã nguồn trực tiếp nếu chưa có hoặc pull nếu đã tồn tại
                 sh '''
-                if [ ! -d "/home/$USER/hello_jenkins" ]; then
-                    git clone https://github.com/khoidang2110/hello_jenkins.git /home/$USER/hello_jenkins
+                if [ ! -d "/home/root/hello_jenkins" ]; then
+                    git clone https://github.com/khoidang2110/hello_jenkins.git /home/root/hello_jenkins
                 else
-                    cd /home/$USER/hello_jenkins
+                    cd /home/root/hello_jenkins
                     git pull
                 fi
                 '''
