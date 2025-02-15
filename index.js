@@ -9,5 +9,5 @@ app.get('/', (req, res) => {
 
 // Lắng nghe trên cổng 3000
 app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
+  console.log(`Server is running at http://localhost:${port} test 2`);
 });
